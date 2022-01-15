@@ -20,6 +20,5 @@ export class News extends Model<News, INewsCreationAttrs> {
 
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     link: string;
-    
 }
    
