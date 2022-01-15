@@ -15,7 +15,7 @@ export class News extends Model<News, INewsCreationAttrs> {
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     title: string;
 
-    @Column({type: DataType.STRING, unique: true, allowNull: false})
+    @Column({type: DataType.STRING, allowNull: false})
     country: string;
 
     @Column({type: DataType.STRING, unique: true, allowNull: false})

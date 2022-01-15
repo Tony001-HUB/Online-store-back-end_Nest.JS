@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { NewsController } from './news/news.controller';
-import { NewsService } from './news/news.service';
 import { NewsModule } from './news/news.module';
 
 @Module({
@@ -21,8 +19,6 @@ import { NewsModule } from './news/news.module';
       autoLoadModels: true
     }),
     NewsModule,
-  ],
-  controllers: [ NewsController ],
-  providers: [ NewsService ],
+  ]
 })
 export class AppModule {}

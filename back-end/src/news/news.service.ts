@@ -8,14 +8,15 @@ export class NewsService {
     constructor(@InjectModel(News) private newsRepository: typeof News) {}
 
     public async createNews(news: NewsDto) {
-        return this.newsRepository.create(news);
+        console.log(news);
+        return await this.newsRepository.create(news);
     }
 
     public async getAllNews() {
-        return this.newsRepository.findAll();
+        return await this.newsRepository.findAll();
     }
 
     public async getNewsByTitle(title: string) {
-        return this.newsRepository.findOne({where: {title}, include: {all: true}});
+        return await this.newsRepository.findOne({where: {title}, include: {all: true}});
     }
 }

@@ -8,6 +8,7 @@ export class NewsController {
 
     @Post()
     public createNews(@Body() newsDto: NewsDto) {
+        console.log(newsDto);
         return this.newsService.createNews(newsDto);
     }
 
