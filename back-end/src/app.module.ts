@@ -1,9 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { NewsController } from './news/news.controller';
 import { NewsService } from './news/news.service';
 import { NewsModule } from './news/news.module';
@@ -25,7 +22,7 @@ import { NewsModule } from './news/news.module';
     }),
     NewsModule,
   ],
-  controllers: [AppController, NewsController],
-  providers: [AppService, NewsService],
+  controllers: [ NewsController ],
+  providers: [ NewsService ],
 })
 export class AppModule {}
