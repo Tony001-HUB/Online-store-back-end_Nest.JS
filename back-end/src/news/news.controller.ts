@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { NewsDto } from './dto/news.dto';
 import { NewsService } from './news.service';
 
@@ -20,5 +20,10 @@ export class NewsController {
     @Get('/:value')
     public getNewsByTitle(@Param('title') title: string) {
       return this.newsService.getNewsByTitle(title);
+    }
+
+    @Delete('/:id')
+    public deleteNews(@Param('id') id: string) {
+      return this.newsService.deleteNewsById(+id);
     }
 }

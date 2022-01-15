@@ -16,7 +16,11 @@ export class NewsService {
         return await this.newsRepository.findAll();
     }
 
-    public async getNewsByTitle(title: string) {
-        return await this.newsRepository.findOne({where: {title}, include: {all: true}});
+    public async getNewsByTitle(newsTitle: string) {
+        return await this.newsRepository.findOne({where: {title: newsTitle}, include: {all: true}});
+    }
+
+    public async deleteNewsById(newsId: number) {
+        return await this.newsRepository.destroy({where: {id: +newsId}})
     }
 }
