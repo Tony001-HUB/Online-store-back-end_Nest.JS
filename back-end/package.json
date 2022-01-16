@@ -26,6 +26,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/sequelize": "^8.0.0",
+    "@nestjs/swagger": "^5.1.5",
     "@nestjs/typeorm": "^8.0.2",
     "cross-env": "^7.0.3",
     "pg": "^8.7.1",
@@ -35,6 +36,7 @@
     "rxjs": "^7.2.0",
     "sequelize": "^6.13.0",
     "sequelize-typescript": "^2.1.2",
+    "swagger-ui-express": "^4.3.0",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
