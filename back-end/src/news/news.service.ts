@@ -23,4 +23,15 @@ export class NewsService {
     public async deleteNewsById(newsId: number) {
         return await this.newsRepository.destroy({where: {id: +newsId}})
     }
+
+    public async updateNewsById(newsDto: NewsDto, id: number) {
+        return await this.newsRepository.update(
+            {
+                title: newsDto.title,
+                country: newsDto.country,
+                link: newsDto.link
+            },
+            {where: { id: id }}
+        );
+    }
 }
