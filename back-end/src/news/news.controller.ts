@@ -42,10 +42,6 @@ export class NewsController {
     @ApiResponse({status: 200, type: News})
     @Put('/:id')
     public updateNews(@Body() newsDto: NewsDto, @Param('id') id: string) {
-      console.log(newsDto);
-      console.log(id);
-      
-      
       return this.newsService.updateNewsById(newsDto, +id);
     }
 }
