@@ -10,9 +10,16 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @ApiOperation({summary: 'Log in by email and password'})
-    @ApiResponse({status: 200, type: ''})
+    @ApiResponse({status: 200, type: AuthUserDto})
     @Post('/login')
-    login(@Body() loginInfo: AuthUserDto) {
+    public login(@Body() loginInfo: AuthUserDto) {
       return this.authService.loginUser(loginInfo);
+    }
+
+    @ApiOperation({summary: 'Registration with email and password'})
+    @ApiResponse({status: 200, type: AuthUserDto})
+    @Post('/registration')
+    public registration(@Body() registrationInfo: AuthUserDto) {
+      return this.authService.userRegistration(registrationInfo);
     }
 }
