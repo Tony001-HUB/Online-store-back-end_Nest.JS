@@ -4,6 +4,7 @@ import { UsersService } from 'src/users/users.service';
 import { AuthUserDto } from './dto/auth.dto';
 import * as bcrypt from 'bcryptjs';
 import { User } from 'src/users/models/users.model';
+import { UserDto } from 'src/users/dto/users.dto';
 
 @Injectable()
 export class AuthService {
@@ -15,13 +16,20 @@ export class AuthService {
         return this.generateToken(user);
     }
 
-    public async userRegistration(authUserDto: AuthUserDto) {
+    public async userRegistration(authUserDto: UserDto) {
         const candidate = await this.usersService.getUserByEmail(authUserDto.email);
         if (candidate) {
           throw new HttpException('This user already exists', HttpStatus.BAD_REQUEST);
         } else {
             const hashPassword = await bcrypt.hash(authUserDto.password, 5);
-            const user = await this.usersService.createUsers({email: authUserDto.email, password: hashPassword});
+            const user = await this.usersService.createUsers(
+                {
+                    email: authUserDto.email, 
+                    password: hashPassword,
+                    name: authUserDto.name,
+                    secondName: authUserDto.secondName
+                }
+                );
             return this.generateToken(user);
         }
     }
@@ -33,7 +41,7 @@ export class AuthService {
     private async validateUserData(authUserDto: AuthUserDto) {
         console.log(authUserDto);        
         const user = await this.usersService.getUserByEmail(authUserDto.email);
-        const passwordsIsEqual = authUserDto.password === user.password;
+        const passwordsIsEqual = await bcrypt.compare(authUserDto.password, user.password);
         if (user && passwordsIsEqual) {
           return user;
         } else {

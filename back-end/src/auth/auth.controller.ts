@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UserDto } from 'src/users/dto/users.dto';
 import { AuthService } from './auth.service';
 import { AuthUserDto } from './dto/auth.dto';
 
@@ -17,9 +18,9 @@ export class AuthController {
     }
 
     @ApiOperation({summary: 'Registration with email and password'})
-    @ApiResponse({status: 200, type: AuthUserDto})
+    @ApiResponse({status: 200, type: UserDto})
     @Post('/registration')
-    public registration(@Body() registrationInfo: AuthUserDto) {
+    public registration(@Body() registrationInfo: UserDto) {
       return this.authService.userRegistration(registrationInfo);
     }
 }

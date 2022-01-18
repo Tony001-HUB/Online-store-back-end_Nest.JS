@@ -20,4 +20,10 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({example: 'QwQ12345678_q', description: 'User password'})
   @Column({type: DataType.STRING, allowNull: false})
   password: string;
+
+  @ApiProperty({example: 'Anton', description: 'User name'})
+  readonly name: string;
+  
+  @ApiProperty({example: 'Asipenka', description: 'User second name'})
+  readonly secondName: string;
 }
