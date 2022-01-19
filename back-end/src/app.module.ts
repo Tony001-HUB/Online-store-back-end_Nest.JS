@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { News } from './news/models/news.model';
 import { User } from './users/models/users.model';
+import { UserNews } from './shared/user-news.model';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { User } from './users/models/users.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, News],
+      models: [User, News, UserNews],
       autoLoadModels: true
     }),
     NewsModule,

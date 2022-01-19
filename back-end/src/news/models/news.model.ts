@@ -1,5 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {  Column, DataType, Model, Table } from "sequelize-typescript";
+import {  BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
+import { UserNews } from "src/shared/user-news.model";
+import { User } from "src/users/models/users.model";
 
 interface INewsCreationAttrs {
     title: string;
@@ -25,5 +27,8 @@ export class News extends Model<News, INewsCreationAttrs> {
     @ApiProperty({example: 'https:/news-example.com', description: 'Ссылка на первоисточник.'})
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     link: string;
+
+    @BelongsToMany(() => User, () => UserNews)
+    users: User[];
 }
    

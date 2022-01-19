@@ -1,5 +1,7 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
+import { News } from "src/news/models/news.model";
+import { UserNews } from "src/shared/user-news.model";
 
 interface UserCreationAttrs {
   email: string;
@@ -28,4 +30,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({example: 'Asipenka', description: 'User second name'})
   @Column({type: DataType.STRING, allowNull: false})
   secondName: string;
+
+  @BelongsToMany(() => News, () => UserNews)
+  roles: News[];
 }
