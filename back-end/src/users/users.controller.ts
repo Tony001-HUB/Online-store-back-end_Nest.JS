@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersNewsDto } from 'src/shared/usersNews/dto/userNews.dto';
 import { UsersNews } from 'src/shared/usersNews/users-news.model';
@@ -51,8 +51,8 @@ export class UsersController {
 
     @ApiOperation({summary: 'Delete news from user collection'})
     @ApiResponse({status: 200, type: UsersNews})
-    @Post('/deleteMyNew')
-    public deleteNewsFromUser(@Body() usersNews: UsersNews) {
-      return this.usersNewsService.deleteNewsFromUser(+usersNews.newsId);
+    @Delete('/deleteMyNew/:newsId')
+    public deleteNewsFromUser(@Param('newsId') newsId: string) {
+      return this.usersNewsService.deleteNewsFromUser(+newsId);
     }
 }
