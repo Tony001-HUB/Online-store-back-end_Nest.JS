@@ -42,11 +42,17 @@ export class UsersController {
       return this.usersNewsService.addNewsToUser(usersNewsDto, user.id);
     }
 
-    @ApiOperation({summary: 'Add news for the user'})
-    @ApiResponse({status: 200, type: UsersNews})
+    @ApiOperation({summary: 'Get all news from user collection'})
+    @ApiResponse({status: 200, type: User})
     @Post('/myNew')
     public getAllUserNews(@Body() usersNewsDto: UsersNewsDto) {
       return this.usersNewsService.getAllUserNews(usersNewsDto);
     }
 
+    @ApiOperation({summary: 'Delete news from user collection'})
+    @ApiResponse({status: 200, type: UsersNews})
+    @Post('/deleteMyNew')
+    public deleteNewsFromUser(@Body() usersNews: UsersNews) {
+      return this.usersNewsService.deleteNewsFromUser(+usersNews.newsId);
+    }
 }

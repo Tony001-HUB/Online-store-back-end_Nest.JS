@@ -16,4 +16,8 @@ export class UsersNewsService {
         return await this.userNewsRepository.findAll({where: {userId: user.userId}, include: {all: true}});
     } 
 
+    public async deleteNewsFromUser(id: number) {
+        return await this.userNewsRepository.destroy({where: {newsId: id}});
+    }
+
 }
