@@ -6,7 +6,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { News } from './news/models/news.model';
 import { User } from './users/models/users.model';
-import { UserNews } from './shared/user-news.model';
+import { UsersNews } from './shared/usersNews/users-news.model';
+import { UsersNewsService } from './shared/usersNews/users-news.service';
 
 @Module({
   imports: [
@@ -20,13 +21,14 @@ import { UserNews } from './shared/user-news.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, News, UserNews],
+      models: [User, News, UsersNews],
       autoLoadModels: true
     }),
     NewsModule,
     UsersModule,
     AuthModule,
   ],
-  controllers: []
+  controllers: [],
+  providers: []
 })
 export class AppModule {}

@@ -8,7 +8,6 @@ export class NewsService {
     constructor(@InjectModel(News) private newsRepository: typeof News) {}
 
     public async createNews(news: NewsDto) {
-        console.log(news);
         return await this.newsRepository.create(news);
     }
 

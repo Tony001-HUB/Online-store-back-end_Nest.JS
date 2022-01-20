@@ -38,8 +38,7 @@ export class AuthService {
         const payload = { email: user.email, id: user.id }
         return { token: this.jwtService.sign(payload) }
     }  
-    private async validateUserData(authUserDto: AuthUserDto) {
-        console.log(authUserDto);        
+    private async validateUserData(authUserDto: AuthUserDto) {   
         const user = await this.usersService.getUserByEmail(authUserDto.email);
         const passwordsIsEqual = await bcrypt.compare(authUserDto.password, user.password);
         if (user && passwordsIsEqual) {

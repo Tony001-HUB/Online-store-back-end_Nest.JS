@@ -1,7 +1,7 @@
 import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { News } from "src/news/models/news.model";
-import { UserNews } from "src/shared/user-news.model";
+import { UsersNews } from "src/shared/usersNews/users-news.model";
 
 interface UserCreationAttrs {
   email: string;
@@ -31,6 +31,6 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({type: DataType.STRING, allowNull: false})
   secondName: string;
 
-  @BelongsToMany(() => News, () => UserNews)
-  roles: News[];
+  @BelongsToMany(() => News, () => UsersNews)
+  news: News[];
 }

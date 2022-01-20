@@ -13,7 +13,6 @@ export class NewsController {
     @ApiResponse({status: 200, type: News})
     @Post()
     public createNews(@Body() newsDto: NewsDto) {
-        console.log(newsDto);
         return this.newsService.createNews(newsDto);
     }
 
